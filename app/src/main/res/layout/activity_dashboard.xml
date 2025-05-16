@@ -9,7 +9,6 @@
     android:background="#039BE5"
     tools:context=".DashboardActivity">
 
-
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinator"
         android:layout_width="0dp"
@@ -47,7 +46,7 @@
                     android:layout_marginBottom="8dp"
                     tools:text="Good Morning, junar" />
 
-                <!-- Static Summary Cards for design-time preview -->
+                <!-- Static Summary Cards - will be hidden in code -->
                 <LinearLayout
                     android:id="@+id/llSummaryStatic"
                     android:orientation="horizontal"
@@ -69,6 +68,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
+
+                <!-- Summary RecyclerView - this is new -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvSummary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:clipToPadding="false"
+                    tools:listitem="@layout/item_summary"
+                    tools:itemCount="3"
+                    tools:orientation="horizontal" />
 
                 <!-- Recent Workouts Label and List -->
                 <TextView
@@ -100,7 +111,4 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-

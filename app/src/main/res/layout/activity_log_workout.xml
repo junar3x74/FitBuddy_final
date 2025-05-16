@@ -18,16 +18,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="16dp"
-            tools:listitem="@layout/item_recent" />
+            android:paddingBottom="72dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:listitem="@layout/item_recent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="TODO"
             android:src="@drawable/ic_add"
+            app:layout_anchor="@id/bottom_navigation"
             app:layout_anchorGravity="bottom|end"
-            android:layout_margin="16dp"
-            app:layout_anchor="@id/rvTodayWorkouts" />
+            android:layout_marginBottom="80dp"
+            />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
@@ -35,6 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             app:menu="@menu/bottom_nav_menu" />
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
