@@ -61,10 +61,10 @@ public class LogWorkoutActivity extends AppCompatActivity implements WorkoutItem
         rvRecent.setLayoutManager(new LinearLayoutManager(this));
 
         items = new ArrayList<>();
-        items.add(new WorkoutItem("Chest Workout", "May 16, 2025", "click to view chest exercises", R.drawable.ic_fitness, Color.parseColor("#D81B60")));
-        items.add(new WorkoutItem("Leg Workout", "May 15, 2025", "click to view leg exercises", R.drawable.ic_fitness, Color.parseColor("#43A047")));
-        items.add(new WorkoutItem("Back & Biceps", "May 14, 2025", "click to view back & biceps", R.drawable.ic_fitness, Color.parseColor("#8E24AA")));
-        items.add(new WorkoutItem("Shoulders & Triceps", "May 13, 2025", "click to view shoulders & triceps", R.drawable.ic_fitness, Color.parseColor("#F4511E")));
+        items.add(new WorkoutItem("Chest Workout", "May 16, 2025", "click to view ", R.drawable.ic_fitness, Color.parseColor("#D81B60")));
+        items.add(new WorkoutItem("Leg Workout", "May 15, 2025", "click to view ", R.drawable.ic_fitness, Color.parseColor("#43A047")));
+        items.add(new WorkoutItem("Back & Biceps", "May 14, 2025", "click to view ", R.drawable.ic_fitness, Color.parseColor("#8E24AA")));
+        items.add(new WorkoutItem("Shoulders", "May 13, 2025", "click to view ", R.drawable.ic_fitness, Color.parseColor("#F4511E")));
 
         workoutItemAdapter = new WorkoutItemAdapter(items, this);
         rvRecent.setAdapter(workoutItemAdapter);
