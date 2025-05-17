@@ -69,6 +69,7 @@
                         android:textColor="?attr/colorOnSurface"/>
 
                     <TextView
+                        android:id="@+id/tvWeight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
@@ -77,6 +78,7 @@
                         android:textColor="?attr/colorOnSurfaceVariant"/>
 
                     <TextView
+                        android:id="@+id/tvHeight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -85,6 +87,7 @@
                         android:textColor="?attr/colorOnSurfaceVariant"/>
 
                     <TextView
+                        android:id="@+id/tvAge"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -93,6 +96,7 @@
                         android:textColor="?attr/colorOnSurfaceVariant"/>
 
                     <TextView
+                        android:id="@+id/tvFavoriteWorkout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -18,40 +19,58 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class ProfileActivity extends AppCompatActivity {
 
+    private TextView tvWeight, tvHeight, tvAge, tvFavorite;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_profile);
 
+        // Reference to stat TextViews
+        tvWeight = findViewById(R.id.tvWeight);
+        tvHeight = findViewById(R.id.tvHeight);
+        tvAge = findViewById(R.id.tvAge);
+        tvFavorite = findViewById(R.id.tvFavoriteWorkout);
 
         MaterialButton btnEdit = findViewById(R.id.btnEditStats);
-        btnEdit.setOnClickListener(v -> {
-            View dialogView = getLayoutInflater().inflate(R.layout.dialog_edit_stats, null);
-            AlertDialog dialog = new AlertDialog.Builder(this)
-                    .setTitle("Edit Body Stats")
-                    .setView(dialogView)
-                    .create();
-            dialog.show();
-
-            // Hook up EditTexts & Save button
-            TextInputEditText etWt = dialogView.findViewById(R.id.etWeight);
-            TextInputEditText etHt = dialogView.findViewById(R.id.etHeight);
-            dialogView.findViewById(R.id.btnSaveStats).setOnClickListener(saveBtn -> {
-                String newWt = etWt.getText().toString();
-                String newHt = etHt.getText().toString();
-                // Update UI and persist...
-                dialog.dismiss();
-            });
-        });
-
-
+        btnEdit.setOnClickListener(v -> showEditDialog());
 
         setupBottomNavigation();
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+    }
+
+    private void showEditDialog() {
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_edit_stats, null);
+
+        TextInputEditText etWeight = dialogView.findViewById(R.id.etWeight);
+        TextInputEditText etHeight = dialogView.findViewById(R.id.etHeight);
+        TextInputEditText etAge = dialogView.findViewById(R.id.etAge);
+        TextInputEditText etFavorite = dialogView.findViewById(R.id.etFavoriteWorkout);
+
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle("Edit Body Stats")
+                .setView(dialogView)
+                .create();
+        dialog.show();
+
+        dialogView.findViewById(R.id.btnSaveStats).setOnClickListener(saveBtn -> {
+            String newWeight = etWeight.getText().toString().trim();
+            String newHeight = etHeight.getText().toString().trim();
+            String newAge = etAge.getText().toString().trim();
+            String newFav = etFavorite.getText().toString().trim();
+
+            if (!newWeight.isEmpty()) tvWeight.setText("Weight: " + newWeight + " kg");
+            if (!newHeight.isEmpty()) tvHeight.setText("Height: " + newHeight + " cm");
+            if (!newAge.isEmpty()) tvAge.setText("Age: " + newAge);
+            if (!newFav.isEmpty()) tvFavorite.setText("Favorite Workout: " + newFav);
+
+            dialog.dismiss();
         });
     }
 
@@ -61,9 +80,7 @@ public class ProfileActivity extends AppCompatActivity {
             Intent intent = null;
             int itemId = item.getItemId();
 
-            // Don't create new intent if we're already on the selected tab
             if (itemId == R.id.nav_profile) {
-                // Already on Dashboard, no need to navigate
                 return true;
             } else if (itemId == R.id.nav_log) {
                 intent = new Intent(this, LogWorkoutActivity.class);
@@ -74,15 +91,13 @@ public class ProfileActivity extends AppCompatActivity {
             }
 
             if (intent != null) {
-                // Clear the back stack so tapping repeatedly doesn't pile up Activities
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
-                overridePendingTransition(0, 0); // optional: no animation
+                overridePendingTransition(0, 0);
             }
             return true;
         });
 
-        // Finally, highlight the current tab:
         bottomNav.setSelectedItemId(R.id.nav_profile);
     }
 }
