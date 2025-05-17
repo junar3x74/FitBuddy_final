@@ -5,12 +5,17 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F5F5F5"
     tools:context=".SignupActivity">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -24,18 +29,31 @@
                 android:layout_height="wrap_content"
                 android:padding="24dp">
 
+                <ImageView
+                    android:id="@+id/ivLogo"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_fitbuddy_logo"
+                    android:contentDescription="App Logo"
+                    android:layout_marginBottom="16dp" />
+
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sign Up"
                     android:textSize="40sp"
+                    android:textStyle="bold"
+                    android:textColor="#3F51B5"
                     android:layout_marginBottom="16dp"
                     android:layout_gravity="center" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Full Name">
+                    android:hint="Full Name"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etName"
                         android:layout_width="match_parent"
@@ -47,6 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_marginTop="12dp">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -60,6 +79,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:passwordToggleEnabled="true"
                     android:layout_marginTop="12dp">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -73,6 +94,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Confirm Password"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:passwordToggleEnabled="true"
                     android:layout_marginTop="12dp">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -87,7 +110,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Create Account"
+                    android:padding="12dp"
                     android:layout_marginTop="24dp" />
+
+                <TextView
+                    android:id="@+id/tvLoginLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Already have an account? Log In"
+                    android:layout_marginTop="16dp"
+                    android:padding="8dp"
+                    android:textColor="#3F51B5"
+                    android:layout_gravity="center" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
     </ScrollView>

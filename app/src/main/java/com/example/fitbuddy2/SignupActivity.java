@@ -3,6 +3,7 @@ package com.example.fitbuddy2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class SignupActivity extends AppCompatActivity {
 
     Button btnsignup;
+    TextView loginlink;
 
 
     @Override
@@ -22,6 +24,19 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         btnsignup = findViewById(R.id.btnSignUp);
+
+        loginlink = findViewById(R.id.tvLoginLink);
+
+
+        loginlink.setOnClickListener(view -> {
+            Intent intent = new Intent(SignupActivity.this , LoginActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
+
+
+
 
 
         btnsignup.setOnClickListener(view -> {

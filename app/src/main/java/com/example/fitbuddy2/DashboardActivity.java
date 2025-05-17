@@ -18,7 +18,9 @@ import com.example.fitbuddy2.adapters.SummaryAdapter;
 import com.example.fitbuddy2.adapters.WorkoutItemAdapter;
 import com.example.fitbuddy2.models.Summary;
 import com.example.fitbuddy2.models.WorkoutItem;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.Arrays;
 import java.util.List;
@@ -36,18 +38,36 @@ public class DashboardActivity extends AppCompatActivity implements WorkoutItemA
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_dashboard);
 
+        MaterialButton btnStart = findViewById(R.id.btnStartWorkout);
+        btnStart.setOnClickListener(v -> {
+            Intent intent = new Intent(this, WorkoutSessionActivity.class);
+            startActivity(intent);
+        });
+
+
         // Initialize RecyclerViews
         setupSummaryRecyclerView();
 
 
-        // Hide static summary layout since we're using RecyclerView instead
-        LinearLayout staticSummaryLayout = findViewById(R.id.llSummaryStatic);
-        if (staticSummaryLayout != null) {
-            staticSummaryLayout.setVisibility(View.GONE);
-        }
+
 
         setupBottomNavigation();
         setupRecentRecyclerView();
+
+        // inside onCreate(...)
+        MaterialToolbar toolbar = findViewById(R.id.topAppBar);
+        toolbar.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.action_logout) {
+
+                Intent intent = new Intent(this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+                return true;
+            }
+            return false;
+        });
+
 
         // Apply edge-to-edge insets to the root view
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
