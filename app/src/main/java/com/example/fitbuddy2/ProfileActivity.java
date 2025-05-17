@@ -2,14 +2,19 @@ package com.example.fitbuddy2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -18,6 +23,29 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_profile);
+
+
+        MaterialButton btnEdit = findViewById(R.id.btnEditStats);
+        btnEdit.setOnClickListener(v -> {
+            View dialogView = getLayoutInflater().inflate(R.layout.dialog_edit_stats, null);
+            AlertDialog dialog = new AlertDialog.Builder(this)
+                    .setTitle("Edit Body Stats")
+                    .setView(dialogView)
+                    .create();
+            dialog.show();
+
+            // Hook up EditTexts & Save button
+            TextInputEditText etWt = dialogView.findViewById(R.id.etWeight);
+            TextInputEditText etHt = dialogView.findViewById(R.id.etHeight);
+            dialogView.findViewById(R.id.btnSaveStats).setOnClickListener(saveBtn -> {
+                String newWt = etWt.getText().toString();
+                String newHt = etHt.getText().toString();
+                // Update UI and persist...
+                dialog.dismiss();
+            });
+        });
+
+
 
         setupBottomNavigation();
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
